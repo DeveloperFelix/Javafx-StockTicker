@@ -13,6 +13,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
@@ -94,8 +95,8 @@ private void exit(){
    
 }    
 private ScheduledFuture getScheduledService(){
-     scheduledExeService =Executors.newSingleThreadScheduledExecutor(); 
-     return scheduledExeService.scheduleAtFixedRate(getData(), 1, 30, TimeUnit.SECONDS);
+     scheduledExeService =Executors.newSingleThreadScheduledExecutor();  
+     return scheduledExeService.scheduleAtFixedRate(getData(), 10, 300, TimeUnit.SECONDS);
 }    
 private Content addGainerContent(){
         
@@ -171,9 +172,12 @@ Runnable run=() -> {
         if(matrix_panel.getContents().size()==1){
             matrix_panel.setContents(Arrays.asList(gainers_cont,loosers_cont,nochange_cont));  
         }
-            gainers_cont.setTxtContent(company.getGainers());
-            loosers_cont.setTxtContent(company.getLoosers());
-            nochange_cont.setTxtContent(company.getNoChange());
+            Platform.runLater(() -> {
+                gainers_cont.setTxtContent(company.getGainers());
+                loosers_cont.setTxtContent(company.getLoosers());
+                nochange_cont.setTxtContent(company.getNoChange());
+        });
+          
   
     } catch (IOException ex) {
         
