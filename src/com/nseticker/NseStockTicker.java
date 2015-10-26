@@ -170,6 +170,7 @@ Runnable run=() -> {
         NseWebParser company=new NseWebParser();
           
         if(matrix_panel.getContents().size()==1){
+            matrix_panel.getContents().clear();
             matrix_panel.setContents(Arrays.asList(gainers_cont,loosers_cont,nochange_cont));  
         }
             Platform.runLater(() -> {
