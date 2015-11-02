@@ -25,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import jfxtras.labs.scene.control.gauge.Content;
 import jfxtras.labs.scene.control.gauge.ContentBuilder;
 import jfxtras.labs.scene.control.gauge.MatrixPanel;
@@ -61,6 +62,7 @@ public void start(Stage primaryStage) {
         Scene scene = new Scene(root,700,350,Color.BLACK);
         scene.getStylesheets().add(this.getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle("StockTicker.Fx");
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -96,7 +98,7 @@ private void exit(){
 }    
 private ScheduledFuture getScheduledService(){
      scheduledExeService =Executors.newSingleThreadScheduledExecutor();  
-     return scheduledExeService.scheduleAtFixedRate(getData(), 60, 300, TimeUnit.SECONDS);
+     return scheduledExeService.scheduleAtFixedRate(getData(), 10, 300, TimeUnit.SECONDS);
 }    
 private Content addGainerContent(){
         
