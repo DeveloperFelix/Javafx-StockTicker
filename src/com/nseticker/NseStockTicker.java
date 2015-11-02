@@ -98,7 +98,7 @@ private void exit(){
 }    
 private ScheduledFuture getScheduledService(){
      scheduledExeService =Executors.newSingleThreadScheduledExecutor();  
-     return scheduledExeService.scheduleAtFixedRate(getData(), 10, 300, TimeUnit.SECONDS);
+     return scheduledExeService.scheduleAtFixedRate(getData(), 60, 300, TimeUnit.SECONDS);
 }    
 private Content addGainerContent(){
         
